@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow Up — Luxury Salon</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--black:#070707;--deep:#0e0e0e;--surface:#161616;--card:#1c1c1c;--gold:#c8a45a;--gold2:#e2c27d;--gold3:#a07c38;--goldglow:rgba(200,164,90,0.12);--goldborder:rgba(200,164,90,0.22);--cream:#f5ead8;--text:#ede4d4;--muted:#8a8070;--dim:#4a4540;--red:#c0392b;--redbg:rgba(192,57,43,0.18);--redborder:rgba(192,57,43,0.45);--green:#27ae60;--greenbg:rgba(39,174,96,0.15);--greenborder:rgba(39,174,96,0.4);--orange:#e67e22;--nav-h:64px;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--black);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--deep);}::-webkit-scrollbar-thumb{background:var(--gold3);}
+
+
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(7,7,7,0.97);border-bottom:1px solid var(--goldborder);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;font-weight:400;color:var(--gold);letter-spacing:3px;cursor:pointer;}
+.nav-links{display:flex;gap:32px;position:absolute;left:50%;transform:translateX(-50%);}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .3s;cursor:pointer;}
+.nav-links a:hover{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-cta{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:8px 20px;font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.nav-cta:hover{background:var(--gold);color:var(--black);}
+.hbg{width:38px;height:38px;background:transparent;border:1px solid var(--goldborder);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:border-color .3s;}
+.hbg:hover{border-color:var(--gold);}
+.hbg-ln{width:18px;height:1px;background:var(--gold);transition:all .3s;}
+.hbg.open .hbg-ln:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.hbg.open .hbg-ln:nth-child(2){opacity:0;}
+.hbg.open .hbg-ln:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.drawer{position:fixed;top:var(--nav-h);right:-310px;width:290px;height:calc(100vh - var(--nav-h));background:var(--card);border-left:1px solid var(--goldborder);z-index:299;transition:right .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:36px 28px;}
+.drawer.open{right:0;}
+.drw-ov{position:fixed;inset:0;top:var(--nav-h);background:rgba(0,0,0,.65);z-index:298;display:none;cursor:pointer;}
+.drw-ov.open{display:block;}
+.drw-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;color:var(--gold);text-align:center;margin-bottom:5px;}
+.drw-sub{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:28px;}
+.drw-rule{height:1px;background:var(--goldborder);margin-bottom:24px;}
+.drw-links{display:flex;flex-direction:column;gap:3px;margin-bottom:28px;}
+.drw-links a{text-decoration:none;color:var(--muted);font-size:11px;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border:1px solid transparent;transition:all .3s;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.drw-links a:hover{color:var(--gold);border-color:var(--goldborder);background:var(--goldglow);}
+.drw-icon{font-size:14px;width:18px;text-align:center;}
+.drw-info{background:var(--goldglow);border:1px solid var(--goldborder);padding:18px;margin-bottom:20px;}
+.drw-info-lbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold3);margin-bottom:12px;}
+.drw-info-row{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;gap:8px;line-height:1.5;}
+.drw-info-row span{color:var(--cream);}
+.drw-btn{width:100%;background:var(--gold);color:var(--black);border:none;padding:13px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.drw-btn:hover{background:var(--gold2);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--nav-h) 5% 0;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 40%,rgba(200,164,90,0.05) 0%,transparent 65%);pointer-events:none;}
+.hero-eyebrow{font-size:10px;letter-spacing:8px;text-transform:uppercase;color:var(--gold3);margin-bottom:32px;}
+.hero-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(72px,14vw,160px);line-height:.88;color:var(--cream);letter-spacing:8px;text-transform:uppercase;}
+.hero-name span{display:block;font-style:italic;font-size:clamp(44px,8vw,92px);color:var(--gold);letter-spacing:12px;}
+.hero-rule{width:1px;height:60px;background:linear-gradient(var(--gold),transparent);margin:40px auto;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,2vw,20px);font-weight:300;color:var(--muted);letter-spacing:2px;margin-bottom:48px;}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--black);border:none;padding:16px 44px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--dim);padding:16px 44px;font-family:'Jost',sans-serif;font-size:10px;font-weight:400;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-scroll{margin-top:70px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--dim);font-size:9px;letter-spacing:4px;text-transform:uppercase;animation:bounce 2.4s ease-in-out infinite;}
+.hero-scroll::after{content:'';width:1px;height:44px;background:linear-gradient(var(--gold3),transparent);}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+
+/* SECTION */
+section{padding:110px 5%;}
+.s-tag{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold3);display:block;text-align:center;margin-bottom:14px;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:400;color:var(--cream);text-align:center;line-height:1;}
+.s-title em{font-style:italic;color:var(--gold);}
+.s-div{display:flex;align-items:center;justify-content:center;gap:16px;margin:20px 0 60px;color:var(--gold3);}
+.s-div::before,.s-div::after{content:'';width:80px;height:1px;}
+.s-div::before{background:linear-gradient(90deg,transparent,var(--gold3));}
+.s-div::after{background:linear-gradient(270deg,transparent,var(--gold3));}
+
+/* MENU */
+#menu{background:var(--deep);}
+.menu-wrap{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--goldborder);position:relative;}
+.menu-wrap::before,.menu-wrap::after{content:'';position:absolute;left:16px;right:16px;height:1px;background:linear-gradient(90deg,transparent,var(--gold3),transparent);}
+.menu-wrap::before{top:14px;}.menu-wrap::after{bottom:14px;}
+.menu-inner{border:1px solid var(--goldborder);margin:24px;padding:52px 56px;}
+.menu-hd{text-align:center;margin-bottom:48px;}
+.menu-brand{font-family:'Cormorant Garamond',serif;font-size:40px;font-style:italic;font-weight:300;color:var(--gold);letter-spacing:4px;}
+.menu-sub{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.menu-rule{display:flex;align-items:center;gap:12px;margin:22px 0 0;}
+.menu-rule::before,.menu-rule::after{content:'';flex:1;height:1px;background:var(--goldborder);}
+.menu-rule span{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold3);}
+.menu-cat{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--gold);letter-spacing:5px;text-transform:uppercase;text-align:center;margin:36px 0 20px;}
+.menu-cat::before,.menu-cat::after{content:' \2014 ';color:var(--gold3);}
+.mitem{display:flex;align-items:flex-start;gap:12px;padding:15px 0;border-bottom:1px dotted rgba(200,164,90,.18);}
+.mitem:last-of-type{border-bottom:none;}
+.mitem-icon{width:28px;text-align:center;font-size:16px;flex-shrink:0;padding-top:2px;}
+.mitem-body{flex:1;}
+.mitem-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--cream);}
+.mitem-desc{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6;}
+.mitem-dots{flex:1;border-bottom:1px dotted var(--dim);margin:0 14px;min-width:20px;align-self:flex-end;margin-bottom:6px;}
+.mitem-r{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;}
+.mitem-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--gold);}
+.mitem-dur{font-size:10px;color:var(--dim);letter-spacing:1px;margin-top:2px;}
+.menu-foot{text-align:center;margin-top:36px;padding-top:28px;border-top:1px solid var(--goldborder);}
+.menu-foot p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);}
+
+/* ABOUT */
+#about{background:var(--black);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto;}
+.about-etag{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold3);margin-bottom:16px;display:block;}
+.about-h{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);font-weight:400;color:var(--cream);line-height:1.05;margin-bottom:28px;}
+.about-h em{font-style:italic;color:var(--gold);}
+.about-p{font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:16px;}
+.about-sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold);margin-top:28px;}
+.about-vals{margin-top:32px;display:flex;flex-direction:column;gap:10px;}
+.aval{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1px solid var(--goldborder);background:var(--card);}
+.aval-icon{font-size:18px;flex-shrink:0;}
+.aval-name{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--cream);}
+.aval-desc{font-size:11px;color:var(--muted);margin-top:2px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.stat-card{background:var(--card);border:1px solid var(--goldborder);padding:28px 22px;text-align:center;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:400;color:var(--gold);line-height:1;margin-bottom:8px;}
+.stat-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+
+/* BOOKING */
+#booking{background:var(--deep);}
+.step-nav-bar{display:flex;align-items:center;justify-content:center;margin-bottom:60px;}
+.snv{display:flex;align-items:center;gap:10px;}
+.snv-num{width:36px;height:36px;border-radius:50%;border:1px solid var(--dim);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--muted);transition:all .4s;}
+.snv-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);transition:color .4s;}
+.snv-line{width:56px;height:1px;background:var(--dim);margin:0 8px;transition:background .4s;}
+.snv.active .snv-num{border-color:var(--gold);background:var(--gold);color:var(--black);}
+.snv.active .snv-lbl{color:var(--gold);}
+.snv.done .snv-num{border-color:var(--gold3);background:var(--goldglow);color:var(--gold);}
+.snv.done .snv-lbl{color:var(--gold3);}
+.snv-line.done{background:var(--gold3);}
+.s-panel{display:none;animation:fadeUp .4s ease;}
+.s-panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* STEP 1 */
+.s1-grid{display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;}
+.svc-row{display:flex;align-items:center;padding:20px 0;border-bottom:1px solid var(--surface);gap:14px;}
+.svc-row:last-child{border-bottom:none;}
+.svc-ico{width:46px;height:46px;background:var(--surface);border:1px solid var(--goldborder);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.svc-bd{flex:1;}
+.svc-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--cream);}
+.svc-desc{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5;}
+.svc-meta{display:flex;gap:14px;margin-top:7px;}
+.svc-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);}
+.svc-dur{font-size:10px;color:var(--dim);letter-spacing:1px;align-self:flex-end;}
+.svc-addbtn{width:36px;height:36px;background:transparent;border:1px solid var(--gold3);color:var(--gold);font-size:22px;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
+.svc-addbtn:hover{background:var(--gold);color:var(--black);border-color:var(--gold);}
+.svc-addbtn.in{background:var(--gold);color:var(--black);border-color:var(--gold);}
+.cart-box{background:var(--card);border:1px solid var(--goldborder);position:sticky;top:80px;}
+.cart-top{padding:22px 22px 16px;border-bottom:1px solid var(--goldborder);display:flex;justify-content:space-between;align-items:center;}
+.cart-t{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--cream);}
+.cart-cnt{background:var(--gold);color:var(--black);font-size:10px;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.cart-empty{padding:36px 22px;text-align:center;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;line-height:1.8;}
+.cart-items{padding:0 22px;}
+.citem{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--surface);}
+.citem:last-child{border-bottom:none;}
+.citem-name{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--cream);}
+.citem-dur{font-size:10px;color:var(--muted);margin-top:2px;}
+.citem-r{display:flex;align-items:center;gap:10px;}
+.citem-p{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);}
+.citem-rm{background:none;border:none;color:var(--dim);cursor:pointer;font-size:15px;padding:4px;transition:color .2s;}
+.citem-rm:hover{color:#e74c3c;}
+.cart-foot{padding:14px 22px 22px;border-top:1px solid var(--goldborder);margin-top:4px;}
+.cart-trow{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;}
+.cart-trow.grand{font-size:14px;color:var(--cream);font-weight:500;margin-top:10px;padding-top:10px;border-top:1px solid var(--goldborder);}
+.cart-trow.grand span:last-child{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:20px;}
+.btn-step{width:100%;background:var(--gold);color:var(--black);border:none;padding:15px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:14px;}
+.btn-step:hover{background:var(--gold2);}
+
+/* STEP 2 */
+.s2-wrap{max-width:840px;margin:0 auto;}
+.sel-svc-bar{background:var(--card);border:1px solid var(--goldborder);padding:18px 22px;margin-bottom:20px;}
+.ssb-lbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold3);margin-bottom:10px;}
+.ssb-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.ssb-tag{background:var(--goldglow);border:1px solid var(--goldborder);padding:5px 14px;font-size:11px;color:var(--gold);letter-spacing:1px;}
+.people-row{display:flex;align-items:center;gap:16px;padding:16px 22px;background:var(--card);border:1px solid var(--goldborder);margin-bottom:24px;}
+.people-lbl-wrap{flex:1;}
+.people-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold3);margin-bottom:4px;}
+.people-note{font-size:11px;color:var(--muted);}
+.people-ctrl{display:flex;align-items:center;}
+.people-btn{width:34px;height:34px;background:transparent;border:1px solid var(--goldborder);color:var(--gold);font-size:18px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;line-height:1;}
+.people-btn:hover{background:var(--gold);color:var(--black);}
+.people-num{width:44px;height:34px;background:var(--goldglow);border-top:1px solid var(--goldborder);border-bottom:1px solid var(--goldborder);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);}
+.s2-grid{display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start;}
+.dlbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold3);display:block;margin-bottom:10px;}
+input[type="date"]{width:100%;background:var(--card);border:1px solid var(--goldborder);color:var(--text);padding:14px 16px;font-size:14px;font-family:'Jost',sans-serif;outline:none;transition:border-color .3s;color-scheme:dark;}
+input[type="date"]:focus{border-color:var(--gold);}
+.hrs-box{margin-top:20px;border:1px solid var(--goldborder);padding:16px 18px;}
+.hrs-lbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold3);margin-bottom:12px;}
+.hrs-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px;color:var(--muted);}
+.hrs-row span:last-child{color:var(--gold);}
+.slots-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;flex-wrap:wrap;gap:8px;}
+.slots-top h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--cream);}
+.legend{display:flex;gap:14px;font-size:10px;color:var(--muted);flex-wrap:wrap;}
+.ldot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:4px;}
+.ldot.av{background:var(--gold);}
+.ldot.pt{background:var(--orange);}
+.ldot.bk{background:var(--red);}
+.slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+.slot{padding:10px 4px;text-align:center;border:1px solid var(--goldborder);background:var(--card);color:var(--muted);cursor:pointer;transition:all .22s;user-select:none;}
+.slot:hover:not(.full){border-color:var(--gold);color:var(--gold);background:var(--goldglow);}
+.slot.chosen{background:var(--gold);color:var(--black);border-color:var(--gold);font-weight:600;}
+.slot.partial{border-color:rgba(230,126,34,.5);background:rgba(230,126,34,.1);color:var(--orange);}
+.slot.partial:hover{border-color:var(--orange);background:rgba(230,126,34,.18);}
+.slot.full{background:var(--redbg);color:#e74c3c;border-color:var(--redborder);cursor:not-allowed;}
+.slot-t{font-size:11px;letter-spacing:.5px;}
+.slot-p{font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
+.slot-cap{font-size:8px;margin-top:3px;}
+.step-btns{display:flex;justify-content:space-between;align-items:center;margin-top:32px;}
+.btn-bk{background:transparent;border:1px solid var(--dim);color:var(--muted);padding:12px 28px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.btn-bk:hover{border-color:var(--gold);color:var(--gold);}
+.btn-nxt{background:var(--gold);color:var(--black);border:none;padding:14px 40px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.btn-nxt:hover{background:var(--gold2);}
+.btn-nxt:disabled{background:var(--dim);color:var(--muted);cursor:not-allowed;}
+
+/* STEP 3 */
+.s3-wrap{max-width:680px;margin:0 auto;}
+.bk-summary{background:var(--card);border:1px solid var(--goldborder);padding:18px 22px;margin-bottom:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.bks-itm .bks-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold3);margin-bottom:5px;}
+.bks-itm .bks-val{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--gold);line-height:1.4;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold3);margin-bottom:8px;}
+.fg input,.fg textarea{width:100%;background:var(--card);border:1px solid var(--goldborder);color:var(--text);padding:13px 16px;font-size:13px;font-family:'Jost',sans-serif;outline:none;transition:border-color .3s;}
+.fg input:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fm-status{padding:10px 16px;margin:12px 0;font-size:12px;letter-spacing:1px;display:none;}
+.fm-status.err{background:var(--redbg);border:1px solid var(--redborder);color:#e74c3c;display:block;}
+.fm-status.ok{background:var(--greenbg);border:1px solid var(--greenborder);color:#2ecc71;display:block;}
+.btn-confirm{width:100%;background:var(--gold);color:var(--black);border:none;padding:18px;font-family:'Jost',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:8px;}
+.btn-confirm:hover{background:var(--gold2);}
+.btn-confirm:disabled{background:var(--dim);cursor:not-allowed;}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--black);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* SUCCESS */
+.suc-ov{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.94);align-items:center;justify-content:center;padding:20px;}
+.suc-ov.open{display:flex;}
+.suc-box{background:var(--card);border:1px solid var(--goldborder);padding:52px 44px;text-align:center;max-width:480px;width:100%;position:relative;max-height:90vh;overflow-y:auto;}
+.suc-box::before,.suc-box::after{content:'';position:absolute;left:14px;right:14px;height:1px;background:linear-gradient(90deg,transparent,var(--gold3),transparent);}
+.suc-box::before{top:12px;}.suc-box::after{bottom:12px;}
+.suc-glyph{font-family:'Cormorant Garamond',serif;font-size:52px;font-style:italic;color:var(--gold);margin-bottom:16px;}
+.suc-box h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;color:var(--cream);margin-bottom:10px;}
+.suc-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.otp-wrap{background:var(--goldglow);border:1px solid var(--goldborder);padding:20px;margin:16px 0 20px;}
+.otp-lbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold3);margin-bottom:10px;}
+.otp-code{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;color:var(--gold);letter-spacing:14px;line-height:1;}
+.otp-note{font-size:11px;color:var(--muted);margin-top:8px;}
+.notif-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold3);margin-bottom:8px;}
+.notif-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:20px;}
+.nbadge{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-size:11px;letter-spacing:1px;border:1px solid;}
+.nbadge.sent{background:var(--greenbg);border-color:var(--greenborder);color:#2ecc71;}
+.nbadge.fail{background:var(--redbg);border-color:var(--redborder);color:#e74c3c;}
+.nbadge.warn{background:rgba(230,126,34,.12);border-color:rgba(230,126,34,.4);color:var(--orange);}
+
+/* FOOTER */
+footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64px 5% 36px;text-align:center;}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:48px;font-style:italic;font-weight:300;color:var(--gold);letter-spacing:6px;margin-bottom:10px;}
+.ft-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);margin-bottom:36px;}
+.ft-info{font-size:12px;color:var(--dim);line-height:2.6;margin-bottom:28px;}
+.ft-info a{color:var(--gold3);text-decoration:none;}
+.ft-copy{font-size:10px;color:var(--dim);letter-spacing:2px;border-top:1px solid var(--goldborder);padding-top:20px;}
+
+@media(max-width:960px){.s1-grid{grid-template-columns:1fr;}.cart-box{position:static;}.s2-grid{grid-template-columns:1fr;}.bk-summary{grid-template-columns:1fr 1fr;}.about-grid{grid-template-columns:1fr;gap:48px;}.nav-links{display:none;}}
+@media(max-width:680px){.slots-grid{grid-template-columns:repeat(3,1fr);}.frow{grid-template-columns:1fr;}.nav-cta{display:none;}section{padding:80px 5%;}.menu-inner{padding:32px 24px;}}
+@media(max-width:460px){.slots-grid{grid-template-columns:repeat(2,1fr);}.snv-lbl{display:none;}.snv-line{width:24px;}}
+</style>
+</head>
+<body>
+
+
+<!-- DRAWER OVERLAY -->
+<div class="drw-ov" id="drwOv" onclick="closeDrawer()"></div>
+
+<!-- SIDE DRAWER -->
+<div class="drawer" id="drawer">
+  <div class="drw-logo">Glow Up</div>
+  <div class="drw-sub">Luxury Salon &middot; Salem</div>
+  <div class="drw-rule"></div>
+  <div class="drw-links">
+    <a onclick="navTo('home')"><span class="drw-icon">&#8962;</span> Home</a>
+    <a onclick="navTo('menu')"><span class="drw-icon">&#10022;</span> Our Menu</a>
+    <a onclick="navTo('about')"><span class="drw-icon">&#9672;</span> About Us</a>
+    <a onclick="navTo('booking')"><span class="drw-icon">&#9711;</span> Book Now</a>
+    <a onclick="navTo('footer')"><span class="drw-icon">&#9993;</span> Contact</a>
+  </div>
+  <div class="drw-info">
+    <div class="drw-info-lbl">Get In Touch</div>
+    <div class="drw-info-row"><span style="color:#ffffff;">&#128241;</span> <span>+91 90258 94457</span></div>
+    <div class="drw-info-row">&#128236; <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="294e465e5d414844181a1f181a1f694e44484045074a4644">[email&#160;protected]</a></span></div>
+    <div class="drw-info-row"><span style="color:#ffffff;">&#128204;</span> <span>Salem, Tamil Nadu</span></div>
+    <div class="drw-info-row">&#128336; <span>Mon&ndash;Sat &middot; 9AM&ndash;8PM</span></div>
+  </div>
+  <button class="drw-btn" onclick="closeDrawer();navTo('booking')">Reserve Appointment &rarr;</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="navTo('home')">Glow Up</div>
+  <div class="nav-links">
+    <a onclick="navTo('menu')">Menu</a>
+    <a onclick="navTo('about')">About</a>
+    <a onclick="navTo('booking')">Book</a>
+    <a onclick="navTo('footer')">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-cta" onclick="navTo('booking')">Reserve Now</button>
+    <div class="hbg" id="hbg" onclick="toggleDrawer()">
+      <div class="hbg-ln"></div><div class="hbg-ln"></div><div class="hbg-ln"></div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-eyebrow">&#10022; Salem's Premier Luxury Salon &#10022;</div>
+  <h1 class="hero-name">GLOW<span>Up</span></h1>
+  <div class="hero-rule"></div>
+  <p class="hero-tagline">Where beauty meets artistry &mdash; your transformation begins here</p>
+  <div class="hero-ctas">
+    <button class="btn-gold" onclick="navTo('booking')">Book an Appointment</button>
+    <button class="btn-outline" onclick="navTo('menu')">View Our Menu</button>
+  </div>
+  <div class="hero-scroll">Discover</div>
+</section>
+
+<!-- MENU CARD -->
+<section id="menu">
+  <span class="s-tag">&#10022; Our Services &#10022;</span>
+  <h2 class="s-title">The <em>Menu</em></h2>
+  <div class="s-div">&#10022;</div>
+  <div class="menu-wrap">
+    <div class="menu-inner">
+      <div class="menu-hd">
+        <div class="menu-brand">Glow Up</div>
+        <div class="menu-sub">Luxury Salon &amp; Spa &middot; Salem, Tamil Nadu</div>
+        <div class="menu-rule"><span>Service Menu</span></div>
+      </div>
+      <div class="menu-cat">Hair &amp; Styling</div>
+      <div class="mitem"><div class="mitem-icon">&#9986;</div><div class="mitem-body"><div class="mitem-name">Haircut &amp; Styling</div><div class="mitem-desc">Precision cut tailored to your face shape &amp; lifestyle, with blow-dry finish</div></div><div class="mitem-dots"></div><div class="mitem-r"><div class="mitem-price">&#8377;800</div><div class="mitem-dur">60 min</div></div></div>
+      <div class="mitem"><div class="mitem-icon">&#127912;</div><div class="mitem-body"><div class="mitem-name">Color &amp; Highlights</div><div class="mitem-desc">Balayage, ombre, full color &amp; highlights using premium ammonia-free formulas</div></div><div class="mitem-dots"></div><div class="mitem-r"><div class="mitem-price">&#8377;1,800</div><div class="mitem-dur">120 min</div></div></div>
+      <div class="menu-cat">Skincare &amp; Beauty</div>
+      <div class="mitem"><div class="mitem-icon">&#10024;</div><div class="mitem-body"><div class="mitem-name">Facial &amp; Skincare</div><div class="mitem-desc">Deep cleansing facials, hydration treatments &amp; glow serums for radiant skin</div></div><div class="mitem-dots"></div><div class="mitem-r"><div class="mitem-price">&#8377;1,200</div><div class="mitem-dur">75 min</div></div></div>
+      <div class="menu-cat">Nails</div>
+      <div class="mitem"><div class="mitem-icon">&#128133;</div><div class="mitem-body"><div class="mitem-name">Nail Care</div><div class="mitem-desc">Gel manicure, pedicure, nail art &amp; extensions crafted with artistic precision</div></div><div class="mitem-dots"></div><div class="mitem-r"><div class="mitem-price">&#8377;600</div><div class="mitem-dur">45 min</div></div></div>
+      <div class="menu-cat">Wellness</div>
+      <div class="mitem"><div class="mitem-icon">&#9854;</div><div class="mitem-body"><div class="mitem-name">Head Massage</div><div class="mitem-desc">Traditional scalp &amp; head massage with warm herbal oils &mdash; deeply relaxing</div></div><div class="mitem-dots"></div><div class="mitem-r"><div class="mitem-price">&#8377;500</div><div class="mitem-dur">30 min</div></div></div>
+      <div class="menu-foot"><p>&ldquo;Treat yourself to an experience of pure luxury and care&rdquo;</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <span class="s-tag">&#10022; Our Story &#10022;</span>
+  <h2 class="s-title">About <em>Us</em></h2>
+  <div class="s-div">&#10022;</div>
+  <div class="about-grid">
+    <div>
+      <span class="about-etag">Est. 2018 &middot; Salem, Tamil Nadu</span>
+      <h3 class="about-h">Crafting <em>Beauty</em>,<br>One Visit at a Time</h3>
+      <p class="about-p">Glow Up was born from a simple belief &mdash; every person deserves to feel extraordinary. Founded in the heart of Salem, we created a sanctuary where world-class artistry meets warm, personal care.</p>
+      <p class="about-p">Our team of passionate stylists, skincare specialists, and wellness therapists bring years of expertise and a genuine love for their craft. We use only premium, skin-safe products and stay ahead of the latest beauty trends.</p>
+      <p class="about-p">Whether stepping in for a quick trim or a full day of pampering, every visit to Glow Up is crafted to leave you looking and feeling your absolute best.</p>
+      <div class="about-sig">&mdash; Gowtham, Founder</div>
+      <div class="about-vals">
+        <div class="aval"><div class="aval-icon">&#10022;</div><div><div class="aval-name">Premium Quality</div><div class="aval-desc">Only the finest products and techniques, always</div></div></div>
+        <div class="aval"><div class="aval-icon">&#9854;</div><div><div class="aval-name">Personal Care</div><div class="aval-desc">Every treatment is tailored to you individually</div></div></div>
+        <div class="aval"><div class="aval-icon">&#10024;</div><div><div class="aval-name">Trusted Expertise</div><div class="aval-desc">Certified professionals with years of experience</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">6+</div><div class="stat-lbl">Years of Excellence</div></div>
+        <div class="stat-card"><div class="stat-num">5K+</div><div class="stat-lbl">Happy Clients</div></div>
+        <div class="stat-card"><div class="stat-num">5</div><div class="stat-lbl">Expert Services</div></div>
+        <div class="stat-card"><div class="stat-num">&#9733;4.9</div><div class="stat-lbl">Client Rating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <span class="s-tag">&#10022; Reservations &#10022;</span>
+  <h2 class="s-title">Book Your <em>Session</em></h2>
+  <div class="s-div">&#10022;</div>
+  <div class="step-nav-bar">
+    <div class="snv active" id="sn1"><div class="snv-num">1</div><div class="snv-lbl">Services</div></div>
+    <div class="snv-line" id="sl1"></div>
+    <div class="snv" id="sn2"><div class="snv-num">2</div><div class="snv-lbl">Date &amp; Time</div></div>
+    <div class="snv-line" id="sl2"></div>
+    <div class="snv" id="sn3"><div class="snv-num">3</div><div class="snv-lbl">Your Details</div></div>
+  </div>
+  <div class="s-panel active" id="step1">
+    <div class="s1-grid">
+      <div id="svcList"></div>
+      <div class="cart-box">
+        <div class="cart-top"><div class="cart-t">Your Selection</div><div class="cart-cnt" id="cartCnt">0</div></div>
+        <div id="cartBody"><div class="cart-empty">No services added yet.<br>Tap <b>+</b> to add.</div></div>
+        <div class="cart-foot" id="cartFoot" style="display:none;">
+          <div class="cart-trow"><span>Total Duration</span><span id="cartDur">&#8212;</span></div>
+          <div class="cart-trow grand"><span>Total</span><span id="cartTot">&#8377;0</span></div>
+          <button class="btn-step" onclick="goStep(2)">Continue to Date &amp; Time &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="s-panel" id="step2">
+    <div class="s2-wrap">
+      <div class="sel-svc-bar"><div class="ssb-lbl">Selected Services</div><div class="ssb-tags" id="ssTags"></div></div>
+      <div class="people-row">
+        <div class="people-lbl-wrap">
+          <div class="people-lbl">Number of People</div>
+          <div class="people-note">How many people are booking this slot?</div>
+        </div>
+        <div class="people-ctrl">
+          <button class="people-btn" onclick="changePeople(-1)">&#8722;</button>
+          <div class="people-num" id="peopleNum">1</div>
+          <button class="people-btn" onclick="changePeople(1)">+</button>
+        </div>
+      </div>
+      <div class="s2-grid">
+        <div>
+          <span class="dlbl">Choose Date</span>
+          <input type="date" id="bookDate" onchange="renderSlots()"/>
+          <div class="hrs-box">
+            <div class="hrs-lbl">Opening Hours</div>
+            <div class="hrs-row"><span>Mon &ndash; Fri</span><span>9:00 AM &ndash; 7:00 PM</span></div>
+            <div class="hrs-row"><span>Saturday</span><span>9:00 AM &ndash; 8:00 PM</span></div>
+            <div class="hrs-row"><span>Sunday</span><span style="color:var(--dim)">Closed</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="slots-top">
+            <h4>Available Slots</h4>
+            <div class="legend"><span><span class="ldot av"></span>Available</span><span><span class="ldot pt"></span>Partial</span><span><span class="ldot bk"></span>Full</span></div>
+          </div>
+          <div class="slots-grid" id="slotsGrid">
+            <div style="grid-column:1/-1;padding:32px;text-align:center;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;">Select a date to view slots.</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-btns">
+        <button class="btn-bk" onclick="goStep(1)">&larr; Back</button>
+        <button class="btn-nxt" id="slotNxt" onclick="goStep(3)" disabled>Continue to Details &rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="s-panel" id="step3">
+    <div class="s3-wrap">
+      <div class="bk-summary" id="bkSummary"></div>
+      <div class="frow">
+        <div class="fg"><label>First Name *</label><input type="text" id="fName" placeholder="Priya"/></div>
+        <div class="fg"><label>Last Name *</label><input type="text" id="lName" placeholder="Sharma"/></div>
+      </div>
+      <div class="fg"><label>Email Address *</label><input type="email" id="cEmail" placeholder="priya@example.com"/></div>
+      <div class="fg"><label>Phone Number *</label><input type="tel" id="cPhone" placeholder="+91 98765 43210"/></div>
+      <div class="fg"><label>Special Requests</label><textarea id="cNotes" placeholder="Preferences, allergies, or any special notes..."></textarea></div>
+      <div class="fm-status" id="fmSt"></div>
+      <div class="step-btns">
+        <button class="btn-bk" onclick="goStep(2)">&larr; Back</button>
+        <button class="btn-confirm" id="confirmBtn" onclick="doConfirm()">Confirm Appointment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS -->
+<div class="suc-ov" id="sucOv">
+  <div class="suc-box">
+    <div class="suc-glyph">&#10022;</div>
+    <h2>Booking Confirmed!</h2>
+    <p id="sucMsg">Your appointment has been confirmed.</p>
+    <div class="otp-wrap">
+      <div class="otp-lbl">Your Booking OTP</div>
+      <div class="otp-code" id="otpCode">0000</div>
+      <div class="otp-note">Show this OTP when you arrive at Glow Up</div>
+    </div>
+    <div class="notif-lbl">Notifications</div>
+    <div class="notif-row" id="notifRow"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:10px;">
+      <button onclick="resendWA()" style="width:100%;background:#25D366;color:#fff;border:none;padding:13px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;cursor:pointer;">&#128242; Send via WhatsApp</button>
+      <button onclick="resendEmail()" style="width:100%;background:transparent;color:var(--gold);border:1px solid var(--goldborder);padding:13px;font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;cursor:pointer;">&#128236; Send via Email</button>
+    </div>
+    <button class="btn-gold" onclick="resetAll()" style="width:100%;">Book Another Appointment</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="ft-logo">Glow Up</div>
+  <div class="ft-tag">&ldquo;Where every visit is a moment of pure indulgence&rdquo;</div>
+  <div class="ft-info">
+    <span style="color:#ffffff;">&#128204;</span> Salem, Tamil Nadu<br>
+    <span style="color:#ffffff;">&#128241;</span> <a href="tel:+919025894457">+91 90258 94457</a><br>
+    &#128236; <a href="/cdn-cgi/l/email-protection#67000810130f060a56545156545127000a060e0b4904080a"><span class="__cf_email__" data-cfemail="7f1810080b171e124e4c494e4c493f18121e1613511c1012">[email&#160;protected]</span></a><br>
+    &#128336; Mon &ndash; Fri: 9AM&ndash;7PM &nbsp;&middot;&nbsp; Saturday: 9AM&ndash;8PM &nbsp;&middot;&nbsp; Sunday: Closed
+  </div>
+  <div class="ft-copy">&copy; 2025 Glow Up Luxury Salon &middot; Salem, Tamil Nadu &middot; All rights reserved</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── OWNER CONFIG ───
+var OWNER_PHONE_WA = '919025894457'; // CallMeBot format
+
+// ─── SERVICES & SLOTS ───
+var SVCS = [
+  {id:'haircut',icon:'&#9986;',name:'Haircut & Styling',desc:'Precision cut tailored to your face shape & lifestyle, with blow-dry finish',price:800,ps:'&#8377;800',dur:'60 min',dm:60},
+  {id:'color',icon:'&#127912;',name:'Color & Highlights',desc:'Balayage, ombre, full color & highlights using premium ammonia-free colors',price:1800,ps:'&#8377;1,800',dur:'120 min',dm:120},
+  {id:'facial',icon:'&#10024;',name:'Facial & Skincare',desc:'Deep cleansing facials, hydration treatments & glow serums for radiant skin',price:1200,ps:'&#8377;1,200',dur:'75 min',dm:75},
+  {id:'nails',icon:'&#128133;',name:'Nail Care',desc:'Gel manicure, pedicure, nail art & extensions crafted with artistic precision',price:600,ps:'&#8377;600',dur:'45 min',dm:45},
+  {id:'massage',icon:'&#9854;',name:'Head Massage',desc:'Traditional scalp & head massage with warm herbal oils — deeply relaxing',price:500,ps:'&#8377;500',dur:'30 min',dm:30}
+];
+var SLOTS = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM'];
+var MAX_PER_SLOT = 5;
+
+// ─── STATE ───
+var cart = [], selSlot = null, numPeople = 1, currentOTP = '', lastBk = null;
+
+// ─── CREDENTIALS ───
+
+
+// ─── INIT ───
+window.onload = function() {
+  buildSvcList();
+
+  // Pre-fill setup form if already saved
+  var d=new Date(), y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), dd=String(d.getDate()).padStart(2,'0');
+  document.getElementById('bookDate').value = y+'-'+m+'-'+dd;
+  document.getElementById('bookDate').min   = y+'-'+m+'-'+dd;
+
+  // Init EmailJS
+};
+
+
+
+// ─── NAV ───
+function navTo(id) {
+  closeDrawer();
+  var el = document.getElementById(id);
+  if(!el) return;
+  window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 72, behavior:'smooth'});
+}
+function toggleDrawer() {
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('drwOv').classList.toggle('open');
+}
+function closeDrawer() {
+  document.getElementById('hbg').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drwOv').classList.remove('open');
+}
+
+// ─── SERVICES ───
+function buildSvcList() {
+  document.getElementById('svcList').innerHTML = SVCS.map(function(s) {
+    return '<div class="svc-row"><div class="svc-ico">'+s.icon+'</div><div class="svc-bd"><div class="svc-name">'+s.name+'</div><div class="svc-desc">'+s.desc+'</div><div class="svc-meta"><span class="svc-price">'+s.ps+'</span><span class="svc-dur">'+s.dur+'</span></div></div><button class="svc-addbtn" id="sb_'+s.id+'" onclick="toggleSvc(\''+s.id+'\')">+</button></div>';
+  }).join('');
+}
+function toggleSvc(id) {
+  var idx = cart.findIndex(function(c){ return c.id===id; });
+  if(idx>-1){ cart.splice(idx,1); document.getElementById('sb_'+id).textContent='+'; document.getElementById('sb_'+id).classList.remove('in'); }
+  else{ cart.push(SVCS.find(function(s){ return s.id===id; })); document.getElementById('sb_'+id).textContent='-'; document.getElementById('sb_'+id).classList.add('in'); }
+  renderCart();
+}
+function removeSvc(id) {
+  cart = cart.filter(function(c){ return c.id!==id; });
+  var b=document.getElementById('sb_'+id); if(b){ b.textContent='+'; b.classList.remove('in'); }
+  renderCart();
+}
+function renderCart() {
+  document.getElementById('cartCnt').textContent = cart.length;
+  if(!cart.length){ document.getElementById('cartBody').innerHTML='<div class="cart-empty">No services added yet.<br>Tap <b>+</b> to add.</div>'; document.getElementById('cartFoot').style.display='none'; return; }
+  var tot=cart.reduce(function(a,c){return a+c.price;},0);
+  var totM=cart.reduce(function(a,c){return a+c.dm;},0);
+  var ds=totM>=60?Math.floor(totM/60)+'h'+(totM%60?' '+totM%60+'m':''):totM+'min';
+  document.getElementById('cartBody').innerHTML='<div class="cart-items">'+cart.map(function(s){return '<div class="citem"><div><div class="citem-name">'+s.name+'</div><div class="citem-dur">'+s.dur+'</div></div><div class="citem-r"><div class="citem-p">'+s.ps+'</div><button class="citem-rm" onclick="removeSvc(\''+s.id+'\')">&#10005;</button></div></div>';}).join('')+'</div>';
+  document.getElementById('cartFoot').style.display='block';
+  document.getElementById('cartDur').textContent=ds;
+  document.getElementById('cartTot').textContent='&#8377;'+tot.toLocaleString('en-IN');
+}
+
+// ─── STEP NAV ───
+function goStep(n) {
+  if(n===2&&!cart.length){ alert('Please add at least one service.'); return; }
+  if(n===3&&!selSlot){ alert('Please select a time slot.'); return; }
+  document.querySelectorAll('.s-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('step'+n).classList.add('active');
+  [1,2,3].forEach(function(i){ var b=document.getElementById('sn'+i); b.classList.remove('active','done'); if(i===n)b.classList.add('active'); if(i<n)b.classList.add('done'); });
+  [1,2].forEach(function(i){ var l=document.getElementById('sl'+i); l.classList.remove('done'); if(i<n)l.classList.add('done'); });
+  if(n===2) document.getElementById('ssTags').innerHTML=cart.map(function(s){return '<span class="ssb-tag">'+s.icon+' '+s.name+'</span>';}).join('');
+  if(n===3) {
+    var date=document.getElementById('bookDate').value;
+    var dDisp=date?new Date(date+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'-';
+    var grandTot=cart.reduce(function(a,c){return a+c.price;},0)*numPeople;
+    document.getElementById('bkSummary').innerHTML=
+      '<div class="bks-itm"><div class="bks-lbl">Services</div><div class="bks-val" style="font-size:12px;font-family:Jost,sans-serif;">'+cart.map(function(s){return s.name;}).join(', ')+'</div></div>'+
+      '<div class="bks-itm"><div class="bks-lbl">Date &amp; Time</div><div class="bks-val">'+dDisp+' &middot; '+selSlot+'</div></div>'+
+      '<div class="bks-itm"><div class="bks-lbl">People &middot; Total</div><div class="bks-val">'+numPeople+' pax &middot; &#8377;'+grandTot.toLocaleString('en-IN')+'</div></div>';
+  }
+  navTo('booking');
+}
+
+// ─── PEOPLE ───
+function changePeople(d) {
+  numPeople=Math.min(MAX_PER_SLOT,Math.max(1,numPeople+d));
+  document.getElementById('peopleNum').textContent=numPeople;
+  if(document.getElementById('bookDate').value) renderSlots();
+}
+
+// ─── BOOKING STORE ───
+function getBks(){ return JSON.parse(localStorage.getItem('gu_bks3')||'{}'); }
+function getSlotCount(date,slot){ var b=getBks(); if(!b[date]||!b[date][slot])return 0; return b[date][slot].reduce(function(s,x){return s+(x.people||1);},0); }
+function saveBk(date,slot,data){ var b=getBks(); if(!b[date])b[date]={}; if(!b[date][slot])b[date][slot]=[]; b[date][slot].push(data); localStorage.setItem('gu_bks3',JSON.stringify(b)); }
+
+// ─── SLOTS ───
+function renderSlots() {
+  var date=document.getElementById('bookDate').value, grid=document.getElementById('slotsGrid');
+  selSlot=null; document.getElementById('slotNxt').disabled=true;
+  if(!date){ grid.innerHTML='<div style="grid-column:1/-1;padding:32px;text-align:center;color:var(--dim);font-family:Cormorant Garamond,serif;font-style:italic;font-size:16px;">Select a date to view slots.</div>'; return; }
+  if(new Date(date+'T00:00:00').getDay()===0){ grid.innerHTML='<div style="grid-column:1/-1;padding:32px;text-align:center;color:var(--dim);font-family:Cormorant Garamond,serif;font-style:italic;font-size:18px;">We are closed on Sundays.<br><span style="font-size:12px;font-family:Jost,sans-serif;font-style:normal;display:block;margin-top:8px;">Please choose another date.</span></div>'; return; }
+  grid.innerHTML=SLOTS.map(function(slot){
+    var booked=getSlotCount(date,slot), remaining=MAX_PER_SLOT-booked, canFit=remaining>=numPeople, isFull=!canFit||remaining<=0, isPartial=booked>0&&!isFull;
+    var cls=isFull?'slot full':(isPartial?'slot partial':'slot'), cap=isFull?'Full':(remaining+' spot'+(remaining!==1?'s':'')+' left'), tp=slot.split(' ');
+    return '<div class="'+cls+'" onclick="'+(isFull?'':'pickSlot(this,\''+slot+'\')')+'"><div class="slot-t">'+tp[0]+'</div><div class="slot-p">'+tp[1]+'</div><div class="slot-cap">'+cap+'</div></div>';
+  }).join('');
+}
+function pickSlot(el,slot){ document.querySelectorAll('.slot').forEach(function(s){s.classList.remove('chosen');}); el.classList.add('chosen'); selSlot=slot; document.getElementById('slotNxt').disabled=false; }
+
+// ─── OTP ───
+function genOTP(){ return String(Math.floor(1000+Math.random()*9000)); }
+
+
+
+// ─── BUILD WHATSAPP LINK via wa.me ───
+function buildWALink(b) {
+  var msg =
+    '🌟 *GLOW UP SALON — New Booking!*\n\n' +
+    '👤 *Customer:* ' + b.customer + '\n' +
+    '📱 *Phone:* '    + b.phone    + '\n' +
+    '📧 *Email:* '    + b.email    + '\n' +
+    '👥 *People:* '   + b.people   + '\n\n' +
+    '💇 *Services:* ' + b.services + '\n' +
+    '📅 *Date:* '     + b.date     + '\n' +
+    '⏰ *Time:* '     + b.slot     + '\n' +
+    '⌛ *Duration:* ' + b.duration + '\n' +
+    '💰 *Total:* '    + b.total    + '\n' +
+    '📝 *Notes:* '    + (b.notes||'None') + '\n\n' +
+    '🔐 *Booking OTP:* ' + b.otp   + '\n\n' +
+    '_Verify OTP when customer arrives at Glow Up Salon._';
+  return 'https://wa.me/' + OWNER_PHONE_WA + '?text=' + encodeURIComponent(msg);
+}
+
+// ─── BUILD EMAIL LINK via mailto ───
+function buildEmailLink(b) {
+  var subject = 'New Booking — ' + b.services + ' on ' + b.date + ' at ' + b.slot;
+  var body =
+    'NEW BOOKING — GLOW UP SALON\n' +
+    '----------------------------------------\n' +
+    'Customer  : ' + b.customer + '\n' +
+    'Phone     : ' + b.phone    + '\n' +
+    'Email     : ' + b.email    + '\n' +
+    'People    : ' + b.people   + '\n' +
+    '----------------------------------------\n' +
+    'Services  : ' + b.services + '\n' +
+    'Date      : ' + b.date     + '\n' +
+    'Time      : ' + b.slot     + '\n' +
+    'Duration  : ' + b.duration + '\n' +
+    'Total     : ' + b.total    + '\n' +
+    '----------------------------------------\n' +
+    'Notes     : ' + (b.notes||'None') + '\n' +
+    'OTP       : ' + b.otp      + '\n' +
+    '----------------------------------------\n' +
+    'Verify OTP ' + b.otp + ' when the customer arrives.';
+  return 'mailto:gowtham136136@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+// ─── CONFIRM BOOKING ───
+async function doConfirm() {
+  var fn=document.getElementById('fName').value.trim(), ln=document.getElementById('lName').value.trim();
+  var em=document.getElementById('cEmail').value.trim(), ph=document.getElementById('cPhone').value.trim();
+  var no=document.getElementById('cNotes').value.trim();
+  var st=document.getElementById('fmSt'); st.className='fm-status';
+  if(!fn||!ln||!em||!ph){ st.className='fm-status err'; st.textContent='Please fill in all required fields.'; return; }
+  if(!em.includes('@')){ st.className='fm-status err'; st.textContent='Please enter a valid email address.'; return; }
+  var date=document.getElementById('bookDate').value;
+  if(getSlotCount(date,selSlot)+numPeople>MAX_PER_SLOT){ st.className='fm-status err'; st.textContent='Slot full. Please go back and pick another slot.'; return; }
+
+  var dStr=new Date(date+'T00:00:00').toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  var sNames=cart.map(function(s){return s.name;}).join(', ');
+  var grandTot=cart.reduce(function(a,c){return a+c.price;},0)*numPeople;
+  var totM=cart.reduce(function(a,c){return a+c.dm;},0);
+  var durStr=totM>=60?Math.floor(totM/60)+'h'+(totM%60?' '+totM%60+'m':''):totM+' min';
+  currentOTP=genOTP();
+  var bk={customer:fn+' '+ln,email:em,phone:ph,notes:no,services:sNames,total:'Rs.'+grandTot.toLocaleString('en-IN'),duration:durStr,date:dStr,slot:selSlot,people:numPeople,otp:currentOTP};
+  lastBk=bk;
+
+  var btn=document.getElementById('confirmBtn');
+  btn.innerHTML='<span class="spinner"></span> Confirming...'; btn.disabled=true;
+  saveBk(date,selSlot,bk);
+  renderSlots();
+
+  // ── Send Email ──
+
+  // ── Auto-open WhatsApp and Email ──
+  var waLink = buildWALink(bk);
+  var emailLink = buildEmailLink(bk);
+  window.open(waLink, '_blank');
+  setTimeout(function(){ window.location.href = emailLink; }, 800);
+
+  // ── Notification badges ──
+  var badges = '';
+  badges += '<div class="nbadge sent">&#128242; WhatsApp opened — tap Send</div>';
+  badges += '<div class="nbadge sent">&#128236; Email opened — tap Send</div>';
+  document.getElementById('notifRow').innerHTML = badges;
+
+  document.getElementById('sucMsg').textContent=(numPeople>1?numPeople+' people booked for ':'')+sNames+' on '+dStr+' at '+selSlot+'.';
+  document.getElementById('otpCode').textContent=currentOTP;
+  document.getElementById('sucOv').classList.add('open');
+  btn.innerHTML='Confirm Appointment'; btn.disabled=false;
+}
+
+// ─── RESEND ───
+function resendWA() {
+  if(!lastBk) return;
+  window.open(buildWALink(lastBk), '_blank');
+}
+function resendEmail() {
+  if(!lastBk) return;
+  window.location.href = buildEmailLink(lastBk);
+}
+
+// ─── RESET ───
+function resetAll() {
+  cart=[]; selSlot=null; numPeople=1; currentOTP=''; lastBk=null;
+  buildSvcList(); renderCart();
+  document.getElementById('peopleNum').textContent='1';
+  ['fName','lName','cEmail','cPhone','cNotes'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('fmSt').className='fm-status';
+  document.getElementById('notifRow').innerHTML='';
+  document.getElementById('sucOv').classList.remove('open');
+  goStep(1);
+}
+</script>
+</body>
+</html>

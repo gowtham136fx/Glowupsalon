@@ -270,11 +270,8 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
 </head>
 <body>
 
-
-<!-- DRAWER OVERLAY -->
 <div class="drw-ov" id="drwOv" onclick="closeDrawer()"></div>
 
-<!-- SIDE DRAWER -->
 <div class="drawer" id="drawer">
   <div class="drw-logo">Glow Up</div>
   <div class="drw-sub">Luxury Salon &middot; Salem</div>
@@ -289,14 +286,13 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   <div class="drw-info">
     <div class="drw-info-lbl">Get In Touch</div>
     <div class="drw-info-row"><span style="color:#ffffff;">&#128241;</span> <span>+91 90258 94457</span></div>
-    <div class="drw-info-row">&#128236; <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="294e465e5d414844181a1f181a1f694e44484045074a4644">[email&#160;protected]</a></span></div>
+    <div class="drw-info-row">&#128236; <span>gowtham136136@gmail.com</span></div>
     <div class="drw-info-row"><span style="color:#ffffff;">&#128204;</span> <span>Salem, Tamil Nadu</span></div>
     <div class="drw-info-row">&#128336; <span>Mon&ndash;Sat &middot; 9AM&ndash;8PM</span></div>
   </div>
   <button class="drw-btn" onclick="closeDrawer();navTo('booking')">Reserve Appointment &rarr;</button>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo" onclick="navTo('home')">Glow Up</div>
   <div class="nav-links">
@@ -313,7 +309,6 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-eyebrow">&#10022; Salem's Premier Luxury Salon &#10022;</div>
   <h1 class="hero-name">GLOW<span>Up</span></h1>
@@ -326,7 +321,6 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   <div class="hero-scroll">Discover</div>
 </section>
 
-<!-- MENU CARD -->
 <section id="menu">
   <span class="s-tag">&#10022; Our Services &#10022;</span>
   <h2 class="s-title">The <em>Menu</em></h2>
@@ -352,7 +346,6 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <span class="s-tag">&#10022; Our Story &#10022;</span>
   <h2 class="s-title">About <em>Us</em></h2>
@@ -382,7 +375,6 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   </div>
 </section>
 
-<!-- BOOKING -->
 <section id="booking">
   <span class="s-tag">&#10022; Reservations &#10022;</span>
   <h2 class="s-title">Book Your <em>Session</em></h2>
@@ -468,7 +460,6 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   </div>
 </section>
 
-<!-- SUCCESS -->
 <div class="suc-ov" id="sucOv">
   <div class="suc-box">
     <div class="suc-glyph">&#10022;</div>
@@ -489,24 +480,20 @@ footer{background:var(--deep);border-top:1px solid var(--goldborder);padding:64p
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer id="footer">
   <div class="ft-logo">Glow Up</div>
   <div class="ft-tag">&ldquo;Where every visit is a moment of pure indulgence&rdquo;</div>
   <div class="ft-info">
     <span style="color:#ffffff;">&#128204;</span> Salem, Tamil Nadu<br>
     <span style="color:#ffffff;">&#128241;</span> <a href="tel:+919025894457">+91 90258 94457</a><br>
-    &#128236; <a href="/cdn-cgi/l/email-protection#67000810130f060a56545156545127000a060e0b4904080a"><span class="__cf_email__" data-cfemail="7f1810080b171e124e4c494e4c493f18121e1613511c1012">[email&#160;protected]</span></a><br>
+    &#128236; <a href="mailto:gowtham136136@gmail.com">gowtham136136@gmail.com</a><br>
     &#128336; Mon &ndash; Fri: 9AM&ndash;7PM &nbsp;&middot;&nbsp; Saturday: 9AM&ndash;8PM &nbsp;&middot;&nbsp; Sunday: Closed
   </div>
   <div class="ft-copy">&copy; 2025 Glow Up Luxury Salon &middot; Salem, Tamil Nadu &middot; All rights reserved</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ─── OWNER CONFIG ───
-var OWNER_PHONE_WA = '919025894457'; // CallMeBot format
-
-// ─── SERVICES & SLOTS ───
+<script>
+var OWNER_PHONE_WA = '919025894457';
 var SVCS = [
   {id:'haircut',icon:'&#9986;',name:'Haircut & Styling',desc:'Precision cut tailored to your face shape & lifestyle, with blow-dry finish',price:800,ps:'&#8377;800',dur:'60 min',dm:60},
   {id:'color',icon:'&#127912;',name:'Color & Highlights',desc:'Balayage, ombre, full color & highlights using premium ammonia-free colors',price:1800,ps:'&#8377;1,800',dur:'120 min',dm:120},
@@ -516,28 +503,15 @@ var SVCS = [
 ];
 var SLOTS = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM'];
 var MAX_PER_SLOT = 5;
-
-// ─── STATE ───
 var cart = [], selSlot = null, numPeople = 1, currentOTP = '', lastBk = null;
 
-// ─── CREDENTIALS ───
-
-
-// ─── INIT ───
 window.onload = function() {
   buildSvcList();
-
-  // Pre-fill setup form if already saved
   var d=new Date(), y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), dd=String(d.getDate()).padStart(2,'0');
   document.getElementById('bookDate').value = y+'-'+m+'-'+dd;
   document.getElementById('bookDate').min   = y+'-'+m+'-'+dd;
-
-  // Init EmailJS
 };
 
-
-
-// ─── NAV ───
 function navTo(id) {
   closeDrawer();
   var el = document.getElementById(id);
@@ -555,7 +529,6 @@ function closeDrawer() {
   document.getElementById('drwOv').classList.remove('open');
 }
 
-// ─── SERVICES ───
 function buildSvcList() {
   document.getElementById('svcList').innerHTML = SVCS.map(function(s) {
     return '<div class="svc-row"><div class="svc-ico">'+s.icon+'</div><div class="svc-bd"><div class="svc-name">'+s.name+'</div><div class="svc-desc">'+s.desc+'</div><div class="svc-meta"><span class="svc-price">'+s.ps+'</span><span class="svc-dur">'+s.dur+'</span></div></div><button class="svc-addbtn" id="sb_'+s.id+'" onclick="toggleSvc(\''+s.id+'\')">+</button></div>';
@@ -584,7 +557,6 @@ function renderCart() {
   document.getElementById('cartTot').textContent='&#8377;'+tot.toLocaleString('en-IN');
 }
 
-// ─── STEP NAV ───
 function goStep(n) {
   if(n===2&&!cart.length){ alert('Please add at least one service.'); return; }
   if(n===3&&!selSlot){ alert('Please select a time slot.'); return; }
@@ -605,19 +577,16 @@ function goStep(n) {
   navTo('booking');
 }
 
-// ─── PEOPLE ───
 function changePeople(d) {
   numPeople=Math.min(MAX_PER_SLOT,Math.max(1,numPeople+d));
   document.getElementById('peopleNum').textContent=numPeople;
   if(document.getElementById('bookDate').value) renderSlots();
 }
 
-// ─── BOOKING STORE ───
-function getBks(){ return JSON.parse(localStorage.getItem('gu_bks3')||'{}'); }
+function getBks(){ try{ return JSON.parse(localStorage.getItem('gu_bks3')||'{}'); }catch(e){return{};} }
 function getSlotCount(date,slot){ var b=getBks(); if(!b[date]||!b[date][slot])return 0; return b[date][slot].reduce(function(s,x){return s+(x.people||1);},0); }
-function saveBk(date,slot,data){ var b=getBks(); if(!b[date])b[date]={}; if(!b[date][slot])b[date][slot]=[]; b[date][slot].push(data); localStorage.setItem('gu_bks3',JSON.stringify(b)); }
+function saveBk(date,slot,data){ try{ var b=getBks(); if(!b[date])b[date]={}; if(!b[date][slot])b[date][slot]=[]; b[date][slot].push(data); localStorage.setItem('gu_bks3',JSON.stringify(b)); }catch(e){} }
 
-// ─── SLOTS ───
 function renderSlots() {
   var date=document.getElementById('bookDate').value, grid=document.getElementById('slotsGrid');
   selSlot=null; document.getElementById('slotNxt').disabled=true;
@@ -631,12 +600,8 @@ function renderSlots() {
 }
 function pickSlot(el,slot){ document.querySelectorAll('.slot').forEach(function(s){s.classList.remove('chosen');}); el.classList.add('chosen'); selSlot=slot; document.getElementById('slotNxt').disabled=false; }
 
-// ─── OTP ───
 function genOTP(){ return String(Math.floor(1000+Math.random()*9000)); }
 
-
-
-// ─── BUILD WHATSAPP LINK via wa.me ───
 function buildWALink(b) {
   var msg =
     '🌟 *GLOW UP SALON — New Booking!*\n\n' +
@@ -655,7 +620,6 @@ function buildWALink(b) {
   return 'https://wa.me/' + OWNER_PHONE_WA + '?text=' + encodeURIComponent(msg);
 }
 
-// ─── BUILD EMAIL LINK via mailto ───
 function buildEmailLink(b) {
   var subject = 'New Booking — ' + b.services + ' on ' + b.date + ' at ' + b.slot;
   var body =
@@ -679,7 +643,6 @@ function buildEmailLink(b) {
   return 'mailto:gowtham136136@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
 
-// ─── CONFIRM BOOKING ───
 async function doConfirm() {
   var fn=document.getElementById('fName').value.trim(), ln=document.getElementById('lName').value.trim();
   var em=document.getElementById('cEmail').value.trim(), ph=document.getElementById('cPhone').value.trim();
@@ -704,15 +667,11 @@ async function doConfirm() {
   saveBk(date,selSlot,bk);
   renderSlots();
 
-  // ── Send Email ──
-
-  // ── Auto-open WhatsApp and Email ──
   var waLink = buildWALink(bk);
   var emailLink = buildEmailLink(bk);
   window.open(waLink, '_blank');
   setTimeout(function(){ window.location.href = emailLink; }, 800);
 
-  // ── Notification badges ──
   var badges = '';
   badges += '<div class="nbadge sent">&#128242; WhatsApp opened — tap Send</div>';
   badges += '<div class="nbadge sent">&#128236; Email opened — tap Send</div>';
@@ -724,7 +683,6 @@ async function doConfirm() {
   btn.innerHTML='Confirm Appointment'; btn.disabled=false;
 }
 
-// ─── RESEND ───
 function resendWA() {
   if(!lastBk) return;
   window.open(buildWALink(lastBk), '_blank');
@@ -734,7 +692,6 @@ function resendEmail() {
   window.location.href = buildEmailLink(lastBk);
 }
 
-// ─── RESET ───
 function resetAll() {
   cart=[]; selSlot=null; numPeople=1; currentOTP=''; lastBk=null;
   buildSvcList(); renderCart();
